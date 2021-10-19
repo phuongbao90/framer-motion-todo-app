@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 
+// skip first rendering
 function useDidUpdateEffect(fn, inputs) {
   const didMountRef = useRef(false);
 

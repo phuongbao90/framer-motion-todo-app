@@ -10,30 +10,30 @@ import { useSidebar } from "contexts/Sidebar";
 import ProgressCircle from "components/UI/ProgressCircle";
 
 const StyledSidebar = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background: ${(props) => props.theme.sidebarBackground};
   color: ${(props) => props.theme.sidebarTextColor};
-  z-index: 1;
+  z-index: 0;
+  border-radius: 2.5rem;
+  border-color: transparent;
   .icon {
     color: ${(props) => props.theme.sidebarIconColor};
   }
   .rating {
     color: ${(props) => props.theme.textColorSecondaryDark};
   }
+  grid-area: 1 / 1;
 `;
 
 const StyledButton = styled.button`
   position: absolute;
-  top: 8%;
-  right: 35%;
+  right: 30%;
+  transform: translateX(-50%);
   padding: 9px;
   border-radius: 50%;
   border: 1.5px solid ${({ theme }) => theme.sidebarIconColor};
   cursor: pointer;
   outline: none;
-
+  z-index: 1;
   &:focus,
   &:active {
     outline: none;
@@ -49,7 +49,7 @@ const Sidebar = () => {
 
   return (
     <StyledSidebar className="sidebar">
-      <div className="wrapper h-full pt-24 pb-16 pl-10">
+      <div className="wrapper h-full pt-20 pb-16 pl-12">
         <StyledButton>
           <FiChevronLeft
             className="text-2xl"
@@ -57,9 +57,9 @@ const Sidebar = () => {
             onClick={() => toggleIsSidebarOpen()}
           />
         </StyledButton>
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full pt-10">
           <div className="mb-auto">
-            <div className="w-32 h-32 mb-6">
+            <div className="w-24 h-24 mb-6">
               <ProgressCircle
                 stroke="#d53f8c"
                 percents="65"
@@ -73,22 +73,22 @@ const Sidebar = () => {
             </div>
             <div>
               <nav>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   <li className="flex items-center space-x-4 text-lg">
                     <div>
-                      <FiBookmark className="icon" />
+                      <FiBookmark className="icon" size="22" />
                     </div>
                     <div>Templates</div>
                   </li>
                   <li className="flex items-center space-x-4 text-lg">
                     <div>
-                      <FiArchive className="icon" />
+                      <FiArchive className="icon" size="22" />
                     </div>
                     <div>Categories</div>
                   </li>
                   <li className="flex items-center space-x-4 text-lg">
                     <div>
-                      <FiBarChart2 className="icon" />
+                      <FiBarChart2 className="icon" size="22" />
                     </div>
                     <div>Analytics</div>
                   </li>

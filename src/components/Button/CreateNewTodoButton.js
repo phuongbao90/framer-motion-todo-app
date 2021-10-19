@@ -1,42 +1,38 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FiPlus } from "react-icons/fi";
+import { ELEVATIONS } from "utils/CONSTANTS";
 
 const StyledButton = styled(motion.button)`
+  --shadow-color: 220deg 60% 50%;
+  box-shadow: ${ELEVATIONS.large};
   padding: 18px;
   border-radius: 50%;
   background: ${({ theme }) => theme.buttonBackground};
   color: white;
   position: fixed;
-  bottom: 30px;
-  right: 22px;
+  right: calc(((100% - 25rem) / 2) + 1.5rem);
+  bottom: calc(((100% - 48.75rem) / 2) + 1.5rem);
+  z-index: 11;
   outline: none;
-  box-shadow: 0 0 5px ${({ theme }) => theme.buttonBackground},
-    0 0 10px ${({ theme }) => theme.buttonBackground};
 
   &:focus {
     outline: none;
   }
 `;
 
-const buttonVariants = {
-  visible: {
-    zIndex: 3,
-  },
-  hidden: {
-    zIndex: 3,
-  },
-};
+const AddTodoButton = ({ setCreating }) => {
+  function handleClick() {
+    setCreating(true);
+  }
 
-const AddTodoButton = ({ toggleIsAddTodoOpen, isAddTodoOpen }) => {
   return (
     <>
       <StyledButton
-        // className="shadow-2xl"
-        onClick={() => toggleIsAddTodoOpen()}
         initial="visible"
-        animate={isAddTodoOpen ? "hidden" : "visible"}
-        variants={buttonVariants}
+        onClick={() => {
+          handleClick();
+        }}
       >
         <FiPlus className="text-2xl" />
       </StyledButton>

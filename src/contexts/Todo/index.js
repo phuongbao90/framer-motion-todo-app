@@ -5,18 +5,25 @@ const TodoContext = createContext();
 const TodoDispatchContext = createContext();
 
 function TodoReducer(state, action) {
+  // console.log(state.todos);
   switch (action.type) {
-    case "add":
+    case "CREATE":
       return {
+        ...state,
         todos: [...state.todos, action.payload],
       };
 
-    case "update":
+    case "UPDATE":
       return {
+        ...state,
         todos: [
           ...state.todos.reduce((acc, curr) => {
             if (curr.id === action.payload.id) {
-              curr.finished = !curr.finished;
+              // curr.finished = !curr.finished;
+              // console.log(curr);
+              // console.log(action.payload);
+              // curr[action.payload] = action.payload;
+              curr.content = action.payload.content;
             }
             acc.push(curr);
             return acc;
@@ -24,22 +31,36 @@ function TodoReducer(state, action) {
         ],
       };
 
-    case "remove":
+    case "FIND":
       return {
-        todos: [
-          ...state.todos.reduce((acc, curr) => {
-            if (curr.id === action.payload.id) {
-              //!FIXME somehow dont work
-              curr.active = false;
-            }
-            acc.push(curr);
-            return acc;
-          }, []),
-        ],
+        ...state,
+        selectedTodo: Object.assign(
+          {},
+          state.todos.find((el) => el.id === action.payload.id)
+        ),
       };
 
-    case "undo":
+    case "REMOVE":
       return {
+        ...state,
+        todos: state.todos.filter((t) => {
+          if (t.id === action.payload.id) {
+            return false;
+          }
+          return t;
+        }),
+      };
+
+    case "NOT_SAVE":
+      // console.log(state.todos.pop());
+      return {
+        ...state,
+        todos: [...state.todos],
+      };
+
+    case "UNDO":
+      return {
+        ...state,
         todos: [
           ...state.todos.reduce((acc, curr) => {
             if (curr.id === action.payload.id) {
@@ -51,6 +72,21 @@ function TodoReducer(state, action) {
         ],
       };
 
+    case "SELECTED":
+      return {
+        ...state,
+        selectedTodo: Object.assign(
+          {},
+          state.todos.find((el) => el.id === action.payload.id)
+        ),
+      };
+
+    case "DESELECTED":
+      return {
+        ...state,
+        selectedTodo: null,
+      };
+
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
@@ -59,7 +95,10 @@ function TodoReducer(state, action) {
 function TodoProvider({ children }) {
   const [state, dispatch] = useReducer(TodoReducer, {
     todos: initialTodos,
+    // isEditing: true,
+    selectedTodo: null,
   });
+  // console.log(state);
 
   return (
     <TodoContext.Provider value={state}>
@@ -69,6 +108,7 @@ function TodoProvider({ children }) {
     </TodoContext.Provider>
   );
 }
+
 function useTodoState() {
   const context = useContext(TodoContext);
   if (context === undefined) {
@@ -77,6 +117,7 @@ function useTodoState() {
 
   return context;
 }
+
 function useTodoDispatch() {
   const context = useContext(TodoDispatchContext);
   if (context === undefined) {
@@ -86,4 +127,20 @@ function useTodoDispatch() {
   return context;
 }
 
-export { TodoProvider, TodoContext, useTodoDispatch, useTodoState };
+// function useSelectedTodo() {
+//   const context = useContext(TodoContext);
+
+//   if (context === undefined) {
+//     throw new Error("useTodoState must be used within a TodoProvider");
+//   }
+
+//   return context;
+// }
+
+export {
+  TodoProvider,
+  TodoContext,
+  useTodoDispatch,
+  useTodoState,
+  // useSelectedTodo,
+};

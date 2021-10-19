@@ -1,11 +1,11 @@
 import {
   LineChart,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
+  // XAxis,
+  // YAxis,
+  // Tooltip,
+  // CartesianGrid,
   Line,
-  Legend,
+  // Legend,
 } from "recharts";
 
 const data = [

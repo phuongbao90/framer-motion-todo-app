@@ -1,39 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Sidebar from "components/Sidebar/";
-import Content from "domain/Content";
-import AddTodo from "domain/AddTodo";
+import Main from "domain/App/Main";
 
 const StyledContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 33px;
-  background: ${({ theme }) => theme.background};
+  width: 25rem;
+  height: 48.75rem;
+  overflow-y: scroll;
+  display: grid;
+  scrollbar-width: none;
 `;
 
 function App() {
-  const [isAddTodoOpen, setIsAddTodoOpen] = useState(false);
-  const toggleIsAddTodoOpen = () => {
-    setIsAddTodoOpen((prev) => !prev);
-  };
-
   return (
-    <StyledContainer>
-      <Sidebar />
-      <Content
-        isAddTodoOpen={isAddTodoOpen}
-        toggleIsAddTodoOpen={toggleIsAddTodoOpen}
-      />
-      <AddTodo
-        isAddTodoOpen={isAddTodoOpen}
-        toggleIsAddTodoOpen={toggleIsAddTodoOpen}
-      />
-    </StyledContainer>
+    <>
+      <StyledContainer id="app">
+        <Sidebar />
+        <Main />
+      </StyledContainer>
+    </>
   );
 }
 

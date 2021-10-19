@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
-import { FiMenu, FiUser, FiSearch, FiMoon, FiSun } from "react-icons/fi";
+import { FiUser, FiSearch, FiMoon, FiSun } from "react-icons/fi";
+
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { ThemeContext } from "contexts/Theme";
 import { useSidebar } from "contexts/Sidebar";
 
@@ -15,14 +17,15 @@ export default function Navigation() {
   const { isSidebarOpen, toggleIsSidebarOpen } = useSidebar();
 
   return (
-    <StyledNav className="py-6 px-6 fixed w-full">
+    <StyledNav className="pt-14 pb-2 px-8 w-full">
       <ul className="flex flex-row  ">
         <li className="mr-auto">
-          <FiMenu
+          <HiOutlineMenuAlt4
             className="text-xl cursor-pointer"
             {...(!isSidebarOpen && {
               onClick: () => toggleIsSidebarOpen(),
             })}
+            size={26}
           />
         </li>
 

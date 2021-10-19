@@ -1,5 +1,6 @@
 import CategoryItem from "components/Category/Item";
 import Slider from "react-slick";
+import categories from "assets/data/defaultCategory.json";
 
 const CategoryCarousel = () => {
   const settings = {
@@ -15,8 +16,16 @@ const CategoryCarousel = () => {
 
   return (
     <Slider {...settings}>
-      <CategoryItem count={20} name="business" percent="40" stroke="#eb06ff" />
-      <CategoryItem count={40} name="personal" percent="70" stroke="#066aff" />
+      {categories &&
+        categories.map((cat) => (
+          <CategoryItem
+            count={40}
+            name={cat.category_name}
+            percent="70"
+            stroke={cat.color}
+            key={cat.id}
+          />
+        ))}
     </Slider>
   );
 };

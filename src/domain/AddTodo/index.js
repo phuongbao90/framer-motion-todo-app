@@ -184,10 +184,8 @@ const variants = {
       console.log("run hidden");
       return {
         scale: 1,
-
         left: "50%",
         transform: "translate(-50%, 0%)",
-
         padding: "18px 18px",
         borderRadius: "50%",
         overflow: "hidden",
@@ -203,7 +201,6 @@ const variants = {
       console.log("run collapsed");
       return {
         scale: 1,
-
         transition: {
           duration: 0,
         },

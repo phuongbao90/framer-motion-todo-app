@@ -50,6 +50,7 @@ const TaskListItemWrapper = ({ children, handleDelete, id, active }) => {
         onDragEnd={(event, info) => handleDragEnd({ event, info })}
         dragConstraints={{ top: 0, bottom: 0 }}
         className="z-20"
+        onTap={(e, i) => console.log(e, i)}
       >
         {children}
       </motion.div>

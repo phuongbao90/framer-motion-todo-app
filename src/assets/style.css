@@ -2,6 +2,7 @@ html {
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  height: 100vh;
 }
 ::-webkit-scrollbar {
   width: 0px;
@@ -22,3 +23,101 @@ html {
 .transform-none {
   transform: none !important;
 }
+
+.unselectable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.expand {
+  transform: translateY(-50%) scale(2, 10);
+}
+
+.ant-picker-input input {
+  color: white !important;
+}
+
+/* [data-layer="list"] {
+} */
+
+/* ------------------------------------------------------------------------------ */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #d9dff9;
+}
+
+.slick-list {
+  overflow: inherit;
+}
+
+/* .text-strike-through {
+  background-image: linear-gradient(transparent calc(100% - 2px), black -2px);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.4s;
+  background-position: 0px -8px;
+} */
+
+/* .text-strike-through-start {
+  background-size: 100% 100%;
+} */
+
+/* [data-layer] {
+  visibility: hidden;
+}
+
+[data-view="list"] [data-layer="list"] {
+  visibility: visible;
+}
+
+[data-view="edit"] [data-layer="edit"] {
+  visibility: visible;
+} */
+/* [data-layer] {
+  visibility: hidden;
+} */
+
+/* [data-view="list"] [data-layer="list"] {
+  visibility: visible;
+} */
+
+/* [data-view="edit"] [data-layer="edit"] {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 99;
+  overflow: hidden;
+} */
+
+/* .item-content-container {
+  position: relative;
+  display: block;
+  pointer-events: none;
+  z-index: 999;
+} */
+
+/* .item-content-container.open {
+  position: fixed;
+  top: calc((100% - 48.75rem) / 2);
+  bottom: calc((100% - 48.75rem) / 2);
+  left: calc((100% - 25rem) / 2);
+  right: calc((100% - 25rem) / 2);
+  z-index: 999;
+  border-radius: 2.5rem;
+} */
