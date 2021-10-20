@@ -16,6 +16,8 @@ import CreateNewTodoButton from "components/Button/CreateNewTodoButton";
 import { useTodoState } from "contexts/Todo";
 import { v4 as uuidv4 } from "uuid";
 import { useTodoDispatch } from "contexts/Todo";
+import breakpoints from "utils/breakpoints";
+import { useIsSmall } from "hooks/useMediaQuery";
 
 const variants = {
   container: {
@@ -31,24 +33,24 @@ const variants = {
         y: 0,
       },
     },
-    hidden: {
+    hidden: ({ isSmall }) => ({
       scale: 0.87,
       x: "70%",
+      borderRadius: isSmall && "2.5rem",
       transition: {
         duration: 0.6,
         ease: [0.25, 1, 0.5, 1],
       },
-      transitionEnd: {
-        // x: 0,
-        // y: 0,
-      },
-    },
+      transitionEnd: {},
+    }),
   },
 };
 
 const StyledContent = styled(motion.main)`
   background: ${({ theme }) => theme.background};
   z-index: 1;
+  overflow-y: scroll;
+  scrollbar-width: none;
 
   h1 {
     color: ${({ theme }) => theme.textColorPrimary};
@@ -58,11 +60,14 @@ const StyledContent = styled(motion.main)`
     color: ${({ theme }) => theme.textColorSecondaryLight};
   }
   grid-area: 1/1;
-  border-radius: 2.5rem;
-  display: grid;
 
-  > * {
-    grid-area: 1/1;
+  /* -------------------------------------------------------------------------- */
+  height: 100vh;
+
+  @media only screen and ${breakpoints.device.xs} {
+    border-radius: 2.5rem;
+    height: 100%;
+    max-height: 100vh;
   }
 `;
 
@@ -112,6 +117,7 @@ const CreateNewTodo = () => {
 
 const Main = () => {
   const { isSidebarOpen, toggleIsSidebarOpen } = useSidebar();
+  const isSmall = useIsSmall();
   // const initialDataView = {
   //   viewType: "list",
   // };
@@ -134,17 +140,14 @@ const Main = () => {
   return (
     <StyledContent
       className={`content-wrapper layer ${!isSidebarOpen && ""}`}
-      // data-view={viewState.viewType}
-      // ref={viewRef}
       initial="visible"
       animate={isSidebarOpen ? "hidden" : "visible"}
       variants={variants.container}
       {...(isSidebarOpen && {
         onClick: () => toggleIsSidebarOpen(),
       })}
-      style={{
-        overflowY: "scroll",
-        scrollbarWidth: "none",
+      custom={{
+        isSmall,
       }}
     >
       <AnimateSharedLayout type="crossfade">

@@ -83,7 +83,8 @@ const Todo = memo(
     // swipe to the left -> remove
     const handleDragEnd = async ({ info }) => {
       const offset = info.offset.x;
-      if (offset < -110) {
+      const velocity = info.velocity.x;
+      if (offset < -110 || velocity < -500) {
         await dragControl.start({
           x: "-300px",
           opacity: 0,
@@ -115,7 +116,6 @@ const Todo = memo(
         layout // needed for child delay animation
         variants={liVariant}
         // ref={constraintsRef}
-        // className="bg-red-500"
       >
         <motion.div
           layout // needed for remove animation
@@ -131,10 +131,6 @@ const Todo = memo(
             handleDragEnd({ event, info });
             setDragging(false);
           }}
-          // transition={{
-          //   type: "tween",
-          //   delay: isSelected ? 5 : 5,
-          // }}
         >
           <TodoContent
             isSelected={isSelected}

@@ -11,7 +11,7 @@ const StyledOptions = styled(motion.div)`
   justify-content: start;
   position: absolute;
   transform: translateY(-50%);
-  top: 49%;
+  top: 53%;
 `;
 
 const Icon = styled.span`

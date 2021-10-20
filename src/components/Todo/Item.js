@@ -11,6 +11,7 @@ import {
 } from "utils/CONSTANTS";
 import TextareaAutosize from "react-autosize-textarea";
 import { useState } from "react";
+import breakpoints from "utils/breakpoints";
 
 const Overlay = styled(motion.div).attrs(({ variants: overlay }) => {
   // return {
@@ -58,21 +59,26 @@ const Content = styled(motion.div)`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  /* background: transparent; */
-  /* background: ${({ theme }) => theme.listBackground}; */
-  color: ${({ theme }) => theme.textColorPrimary};
+  color: ${({ theme }) => theme.textColorPrimary} !important;
   padding: 2rem;
   z-index: 30;
 
   /* -------------------------------------------------------------------------- */
   position: fixed;
-  top: calc((100% - 48.75rem) / 2);
-  bottom: calc((100% - 48.75rem) / 2);
-  right: calc((100% - 25rem) / 2);
-  left: calc((100% - 25rem) / 2);
-  max-width: 25rem;
-  max-height: 48.75rem;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   border-radius: 2.5rem;
+
+  @media only screen and ${breakpoints.device.xs} {
+    top: calc((100% - 48.75rem) / 2);
+    bottom: calc((100% - 48.75rem) / 2);
+    right: calc((100% - 25rem) / 2);
+    left: calc((100% - 25rem) / 2);
+    max-width: 25rem;
+    max-height: 48.75rem;
+  }
 
   ${({ isCreating, current }) => {
     if (!isCreating) {
@@ -174,13 +180,13 @@ const variants = {
 
 const Textwrapper = styled(motion.div)`
   position: absolute;
-  top: 25%;
+  top: 20%;
   width: 80%;
 `;
 
 const Actions = styled(motion.div)`
   position: absolute;
-  top: 66%;
+  top: 70%;
   right: 50%;
   transform: translateX(50%);
   display: flex;
@@ -232,7 +238,11 @@ const Item = ({
         <Textwrapper layoutId={`content-container-${id}`}>
           <TextareaAutosize
             className="w-full outline-none bg-transparent z-0 cursor-pointer text-2xl overflow-auto"
+            style={{
+              fontFamily: `"Roboto", sans-serif !important`,
+            }}
             value={content}
+            // defaultValue={"lorem ipsum"}
             autoFocus
             onChange={handleUpdate}
             style={{

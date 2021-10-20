@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FiPlus } from "react-icons/fi";
 import { ELEVATIONS } from "utils/CONSTANTS";
+import breakpoints from "utils/breakpoints";
 
 const StyledButton = styled(motion.button)`
   --shadow-color: 220deg 60% 50%;
@@ -11,13 +12,18 @@ const StyledButton = styled(motion.button)`
   background: ${({ theme }) => theme.buttonBackground};
   color: white;
   position: fixed;
-  right: calc(((100% - 25rem) / 2) + 1.5rem);
-  bottom: calc(((100% - 48.75rem) / 2) + 1.5rem);
+  right: 1.5rem;
+  bottom: 1.5rem;
   z-index: 11;
   outline: none;
 
   &:focus {
     outline: none;
+  }
+
+  @media only screen and ${breakpoints.device.xs} {
+    right: calc(((100% - 25rem) / 2) + 1.5rem);
+    bottom: calc(((100% - 48.75rem) / 2) + 1.5rem);
   }
 `;
 

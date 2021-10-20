@@ -1,3 +1,4 @@
+import breakpoints from "utils/breakpoints";
 import styled from "styled-components";
 import {
   FiBookmark,
@@ -13,7 +14,7 @@ const StyledSidebar = styled.div`
   background: ${(props) => props.theme.sidebarBackground};
   color: ${(props) => props.theme.sidebarTextColor};
   z-index: 0;
-  border-radius: 2.5rem;
+
   border-color: transparent;
   .icon {
     color: ${(props) => props.theme.sidebarIconColor};
@@ -22,6 +23,15 @@ const StyledSidebar = styled.div`
     color: ${(props) => props.theme.textColorSecondaryDark};
   }
   grid-area: 1 / 1;
+
+  /* -------------------------------------------------------------------------- */
+  height: 100vh;
+
+  @media only screen and ${breakpoints.device.xs} {
+    border-radius: 2.5rem;
+    height: 100%;
+    max-height: 100vh;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -50,12 +60,8 @@ const Sidebar = () => {
   return (
     <StyledSidebar className="sidebar">
       <div className="wrapper h-full pt-20 pb-16 pl-12">
-        <StyledButton>
-          <FiChevronLeft
-            className="text-2xl"
-            // onClick={() => setIsSidebarOpen((prev) => !prev)}
-            onClick={() => toggleIsSidebarOpen()}
-          />
+        <StyledButton onClick={() => toggleIsSidebarOpen()}>
+          <FiChevronLeft className="text-2xl" />
         </StyledButton>
         <div className="flex flex-col h-full pt-10">
           <div className="mb-auto">
