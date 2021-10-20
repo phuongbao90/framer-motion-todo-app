@@ -1,7 +1,9 @@
 # React ToDo App with Framer Motion
 
-This ToDo app is an attempt to replicate of a ToDo App designed by [Alex Arutuynov](https://dribbble.com/shots/14100356-ToDo-App-UI).
+This ToDo app is an attempt to replicate a ToDo App designed by [Alex Arutuynov](https://dribbble.com/shots/14100356-ToDo-App-UI).
 **The main purpose of this app is on the animation** so a lot of todo app functionalities are left out (like user login, data persistance ...)
+
+A **live version** of this app can be found [at](https://framer-motion-todo-app.npbwebdev.com/)
 
 ## Getting Started
 
@@ -13,7 +15,7 @@ This ToDo app is an attempt to replicate of a ToDo App designed by [Alex Arutuyn
    ```sh
    npm install
    ```
-3. Start the project`
+3. Start the project
    ```sh
    npm run start
    ```
